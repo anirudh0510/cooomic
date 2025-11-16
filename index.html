@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ComicVerse Hub</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.cdnfonts.com/css/callie-chalk-font"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.cdnfonts.com/css/callie-chalk-font");
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner container">
+        <h1>ComicVerse Hub</h1>
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="browse.html">Browse</a>
+          <a href="cart.html">Cart <span class="cart-count"></span></a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container">
+        <h2>Explore the Multiverse of Comics</h2>
+        <p>
+          Discover new releases, trending series & your favorite publishers!
+        </p>
+        <a href="browse.html" class="btn hero-btn">Start Exploring</a>
+      </div>
+    </section>
+
+    <section class="photo-gallery">
+      <h2>Popular Releases</h2>
+
+      <div class="slider-wrapper">
+        <div class="image-slider" id="parallax-slider"></div>
+      </div>
+
+      <div class="scrollbar">
+        <div class="scroll-thumb"></div>
+      </div>
+    </section>
+
+    <!-- PUBLISHER SPOTLIGHT -->
+    <div class="publisher-row">
+      <div
+        class="publisher-card"
+        onclick="window.location='browse.html?pub=Marvel'"
+      >
+        Marvel Comics
+      </div>
+      <div
+        class="publisher-card"
+        onclick="window.location='browse.html?pub=DC'"
+      >
+        DC Comics
+      </div>
+      <div
+        class="publisher-card"
+        onclick="window.location='browse.html?pub=Image'"
+      >
+        Image Comics
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>© ComicVerse Hub — A static demo store</p>
+    </footer>
+
+    <script src="js/comics.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const slider = document.getElementById("parallax-slider");
+
+        if (!slider || !window.COMICS) return;
+
+        // Use same 9 comics or pick latest 9
+        const sliderComics = [...COMICS].slice(0, 9);
+
+        slider.innerHTML = sliderComics
+          .map(
+            (c) => `
+      <img 
+        src="${c.cover}" 
+        alt="${c.title}" 
+        onclick="openComic(${c.id})"
+        style="cursor:pointer;"
+      />
+    `
+          )
+          .join("");
+      });
+
+      // REUSE your existing function
+      function openComic(id) {
+        window.location.href = "comic-detail.html?id=" + id;
+      }
+
+      // --- BUILD HOMEPAGE CONTENT ---
+      document.addEventListener("DOMContentLoaded", () => {
+        updateCartCount();
+
+        // New Releases = latest by date
+        const newReleases = [...COMICS]
+          .sort((a, b) => new Date(b.release) - new Date(a.release))
+          .slice(0, 4);
+
+        renderHomeCards("new-releases", newReleases);
+
+        // Popular Series = highest rated / manually pick
+        const popular = [...COMICS].slice(0, 4);
+        renderHomeCards("popular-series", popular);
+      });
+
+      function renderHomeCards(targetId, list) {
+        const box = document.getElementById(targetId);
+        if (!box) return;
+
+        box.innerHTML = "";
+        list.forEach((c) => {
+          const div = document.createElement("div");
+          div.className = "card";
+          div.innerHTML = `
+        <img src="${c.cover}">
+        <div>
+          <h3>${c.title}</h3>
+          <p class="muted">${c.publisher}</p>
+          <a href="comic-detail.html?id=${c.id}" class="btn">View</a>
+        </div>
+      `;
+          box.appendChild(div);
+        });
+      }
+    </script>
+  </body>
+</html>

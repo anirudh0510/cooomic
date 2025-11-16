@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Browse — ComicVerse Hub</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <h1 class="logo">ComicVerse Hub</h1>
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="browse.html">Browse</a>
+          <a href="cart.html">Cart <span id="cart-count">0</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="controls">
+        <div>
+          <label>Filter by publisher:</label>
+          <select id="filter-publisher">
+            <option value="all">All</option>
+          </select>
+        </div>
+        <div>
+          <label>Sort by:</label>
+          <select id="sort-by">
+            <option value="default">Default</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="title-az">Title: A → Z</option>
+            <option value="date-desc">Release: New → Old</option>
+          </select>
+        </div>
+        <div>
+          <input id="search" placeholder="Search by title or character" />
+        </div>
+      </section>
+
+      <section id="comics-grid" class="cards-grid"></section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© ComicVerse Hub — A static demo store</p>
+      </div>
+    </footer>
+
+    <script src="js/comics.js"></script>
+    <script src="js/browse.js"></script>
+  </body>
+</html>

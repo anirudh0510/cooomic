@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Comic Detail — ComicVerse Hub</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <h1 class="logo">ComicVerse Hub</h1>
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="browse.html">Browse</a>
+          <a href="cart.html">Cart <span id="cart-count">0</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container detail-page">
+      <div class="detail-left">
+        <div class="cover-wrap">
+          <img id="cover-img" src="assets/images/placeholder.png" alt="cover" />
+        </div>
+      </div>
+      <aside class="detail-right">
+        <h2 id="comic-title">Title</h2>
+        <p id="comic-synopsis"></p>
+        <p><strong>Publisher:</strong> <span id="comic-publisher"></span></p>
+        <p><strong>Creators:</strong> <span id="comic-creators"></span></p>
+        <p class="price">₹ <span id="comic-price"></span></p>
+
+        <label>Quantity</label>
+        <input id="qty" type="number" value="1" min="1" />
+        <button id="add-cart">Add to Cart</button>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© ComicVerse Hub — A static demo store</p>
+      </div>
+    </footer>
+
+    <script src="js/comics.js"></script>
+    <script src="js/detail.js"></script>
+  </body>
+</html>
